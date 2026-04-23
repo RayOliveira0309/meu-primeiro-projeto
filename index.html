@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Primeiro Projeto</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f4f4f4;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Olá, eu sou a Rayanne 👩‍💻</h1>
+
+  <p>Estou começando minha jornada no Front-End e QA 🚀</p>
+
+  <button onclick="mostrarMensagem()">Clique aqui</button>
+  <button onclick="limparMensagem()">Limpar</button>
+
+  <p id="mensagem"></p>
+
+  <script>
+    function mostrarMensagem() {
+      document.getElementById("mensagem").innerText = "Meu primeiro projeto! 🎉";
+        }
+    function limparMensagem() {
+        document.getElementById("mensagem").innerText = "";
+    
+    }
+  </script>
+
+</body>
+</html>
