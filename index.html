@@ -82,6 +82,20 @@
     #mensagem {
       font-weight: bold;
     }
+    .sucesso {
+  color: green;
+}
+
+.erro {
+  color: red;
+}
+
+.alerta {
+  color: orange;
+}
+#historico li {
+  margin-bottom: 5px;
+}
   </style>
 </head>
 
@@ -99,24 +113,55 @@
     <button onclick="limpar()">Limpar</button>
 
     <p id="mensagem"></p>
+    <h3>Histórico de testes</h3>
+<ul id="historico"></ul>
+<button onclick="limparHistorico()">Limpar histórico</button>
 
   </div>
 
   <script>
-    function testar() {
-      let nome = document.getElementById("nome").value;
-      let mensagem = document.getElementById("mensagem");
+  function testar() {
+  let nome = document.getElementById("nome").value;
+  let mensagem = document.getElementById("mensagem");
+  let historico = document.getElementById("historico");
 
-      if (nome === "") {
-        mensagem.innerText = "❌ Teste falhou: campo vazio";
-      } else if (nome.length < 3) {
-        mensagem.innerText = "⚠️ Nome muito curto";
-      } else if (nome.length > 20) {
-        mensagem.innerText = "⚠️ Nome muito longo";
-      } else {
-        mensagem.innerText = "✅ Teste passou";
-      }
-    }
+  let resultado = "";
+
+  mensagem.className = "";
+
+  if (nome === "") {
+    mensagem.innerText = "❌ Teste falhou: campo vazio";
+    mensagem.classList.add("erro");
+    resultado = "❌ (vazio) → campo obrigatório";
+
+  } else if (nome.length < 3) {
+    mensagem.innerText = "⚠️ Nome muito curto";
+    mensagem.classList.add("alerta");
+    resultado = "⚠️ " + nome + " → muito curto";
+
+  } else if (nome.length > 20) {
+    mensagem.innerText = "⚠️ Nome muito longo";
+    mensagem.classList.add("alerta");
+    resultado = "⚠️ " + nome + " → muito longo";
+
+  } else {
+    mensagem.innerText = "✅ Teste passou";
+    mensagem.classList.add("sucesso");
+    resultado = "✅ " + nome + " → válido";
+  }
+
+  let item = document.createElement("li");
+item.innerText = resultado;
+
+if (resultado.includes("❌")) {
+  item.style.color = "red";
+} else if (resultado.includes("⚠️")) {
+  item.style.color = "orange";
+} else {
+  item.style.color = "green";
+}
+historico.appendChild(item);
+  }
 
     function limpar() {
       document.getElementById("mensagem").innerText = "";
@@ -128,6 +173,10 @@
         testar();
       }
     }
+    
+   function limparHistorico() {
+  document.getElementById("historico").innerHTML = "";
+}
   </script>
 
 </body>
